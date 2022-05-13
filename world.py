@@ -11,21 +11,34 @@ class Agent:
     def __init__(self, _hedonist_table):
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
-        self._action = None
+        self._action = 0
         self.anticipated_outcome = None
+        self.CmtrVariables = 0
 
     def action(self, outcome):
         """ tracing the previous cycle """
+        #self._action = 0
         if self._action is not None:
             print("Action: " + str(self._action) +
                   ", Anticipation: " + str(self.anticipated_outcome) +
                   ", Outcome: " + str(outcome) +
                   ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                  ", valence: " + str(self.hedonist_table[self._action][outcome]) + ")")
+                  ", valence: " + str(self.hedonist_table[self._action][outcome]) + ")" +
+                  ", compteur de la variable: " + str(self.CmtrVariables))
+
+            self.CmtrVariables = self.CmtrVariables + 1
+
+            if self.CmtrVariables >= 6:
+                self.CmtrVariables = 0
+                if self._action == 1:
+                    self._action = 0
+                else:
+                    self._action = 1
+
 
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
-        self._action = 0
+        #self._action = 0
         # TODO: Implement the agent's anticipation mechanism
         self.anticipated_outcome = 0
         return self._action
@@ -80,6 +93,8 @@ e = Environment1()
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
-    for i in range(70):
+    for i in range(11):
         action = a.action(outcome)
         outcome = e.outcome(action)
+
+
