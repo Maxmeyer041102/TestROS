@@ -15,9 +15,9 @@ class OsoyooCarEnacter:
     def __init__(self):
         # Instantiating the robot's egocentric spatial memory window
         self.osoyoo_car_window = EgoMemoryWindow(600)
-        self.osoyoo_car_window.zoom_level = 250
+        self.osoyoo_car_window.zoom_level = 2
 
-        #BONJOUR
+
 
         # The controller
         self.controller = Controller(self.osoyoo_car_window)

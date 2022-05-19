@@ -2,6 +2,8 @@
 # Olivier Georgeon, 2021.
 # This code is used to teach Developmental AI.
 # from turtlesim_enacter import TurtleSimEnacter # requires ROS
+import random
+
 from turtlepy_enacter import TurtlePyEnacter
 # from Agent5 import Agent5
 # from OsoyooCarEnacter import OsoyooCarEnacter
@@ -14,6 +16,7 @@ class Agent:
         self._action = 0
         self.anticipated_outcome = None
         self.CmtrVariables = 0
+        self.previous_outcome = None
 
     def action(self, outcome):
         """ tracing the previous cycle """
@@ -35,7 +38,9 @@ class Agent:
                 else:
                     self._action = 1
 
-
+            if self.previous_outcome == self.previous_outcome:
+                self.CmtrVariables = self.CmtrVariables +1
+                
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
         #self._action = 0
@@ -76,14 +81,19 @@ class Environment3:
         self.previous_action = action
         return _outcome
 
+class Environment4 :
+    def outcome (self, action):
+        _outcome = random.randint(0,1)
 
+
+        return _outcome
 # TODO Define the hedonist valance of interactions (action, outcome)
 hedonist_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # a = Agent5(hedonist_table)
 # TODO Choose an environment
-e = Environment1()
+e = Environment4()
 # e = Environment2()
 # e = Environment3()
 # e = TurtleSimEnacter()
