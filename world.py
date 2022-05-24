@@ -6,15 +6,18 @@ import random
 from Agent3 import Agent3
 
 from turtlepy_enacter import TurtlePyEnacter
-# from Agent5 import Agent5
-# from OsoyooCarEnacter import OsoyooCarEnacter
+from Agent5 import Agent5
+from OsoyooCarEnacter import OsoyooCarEnacter
+ROBOT_IP = "192.168.4.1"
 
 
 class Agent:
-    def __init__(self, _hedonist_table):
+    def __init__(self, valence_table):
         """ Creating our agent """
-        self.hedonist_table = _hedonist_table
+
+        self.hedonist_table = valence_table
         self._action = 0
+
         self.anticipated_outcome = None
 
 
@@ -28,7 +31,7 @@ class Agent:
                   ", Anticipation: " + str(self.anticipated_outcome) +
                   ", Outcome: " + str(outcome) +
                   ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                  ", valence: " + str(self.hedonist_table[self._action][outcome]) + ")" +
+                  ", valence: " + str(self.valence_table[self._action][outcome]) + ")" +
                   ", compteur de la variable: " + str(self.CmtrVariables) +
                   ", Prédiction : " + str(self.prediction))
 
@@ -44,9 +47,6 @@ class Agent:
 
         if self.previous_outcome == outcome:
             self.CmtrVariables = self.CmtrVariables +1
-
-
-
 
 
 
@@ -95,15 +95,21 @@ class Environment4 :
     def outcome (self, action):
         _outcome = random.randint(0,1)
 
-
-
         return _outcome
 # TODO Define the hedonist valance of interactions (action, outcome)
-hedonist_table = [[-1, 1], [-1, 1]]
+valences = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 #a = Agent (hedonist_table)
 a = Agent3(hedonist_table)
 # a = Agent5(hedonist_table)
+
+# TODO Define the valance of interactions (action, outcome)
+
+# valences = [[1, -1], [1, -1]]
+# TODO Choose an agent
+#a = Agent(valences)
+# a = Agent5(valences)
+
 # TODO Choose an environment
 e = Environment1()
 # e = Environment2()
@@ -111,12 +117,14 @@ e = Environment1()
 # e = Environment4()
 # e = TurtleSimEnacter()
 # e = TurtlePyEnacter()
-# e = OsoyooCarEnacter()
+# e = OsoyooCarEnacter(ROBOT_IP)
 
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
+
     for i in range(41):
+
         action = a.action(outcome)
         outcome = e.outcome(action)
 
