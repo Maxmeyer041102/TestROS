@@ -6,7 +6,7 @@ import random
 from Agent3 import Agent3
 
 from turtlepy_enacter import TurtlePyEnacter
-from Agent5 import Agent5
+#from Agent5 import Agent5
 from OsoyooCarEnacter import OsoyooCarEnacter
 ROBOT_IP = "192.168.4.1"
 
@@ -100,7 +100,7 @@ class Environment4 :
 valences = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 #a = Agent (hedonist_table)
-a = Agent3(hedonist_table)
+a = Agent3(valences)
 # a = Agent5(hedonist_table)
 
 # TODO Define the valance of interactions (action, outcome)
@@ -111,9 +111,9 @@ a = Agent3(hedonist_table)
 # a = Agent5(valences)
 
 # TODO Choose an environment
-e = Environment1()
-# e = Environment2()
-# e = Environment3()
+#e = Environment1()
+e = Environment2()
+#e = Environment3()
 # e = Environment4()
 # e = TurtleSimEnacter()
 # e = TurtlePyEnacter()
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
 
-    for i in range(41):
+    for i in range(10):
 
         action = a.action(outcome)
         outcome = e.outcome(action)

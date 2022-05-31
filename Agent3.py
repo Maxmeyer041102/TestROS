@@ -15,34 +15,41 @@ class Agent3:
         self._action = None
         self.anticipated_outcome = None
         self.compteur_lignes = 0
-        self.prediction0 = None
-        self.prediction1 = None
+        self.prediction0 = 0
+        self.prediction1 = 0
 
     def action(self, outcome):
         """ tracing the previous cycle """
         if self._action is not None:
-            ("Action: " + str(self._action) +
+            print(str(self.compteur_lignes) + " " +
+                  ("Action: " + str(self._action) +
                   ", Anticipation: " + str(self.anticipated_outcome) +
                   ", Outcome: " + str(outcome) +
                   ", Satisfaction: (anticipation: " + str(self.anticipated_outcome == outcome) +
-                  ", valence: " + str(self.valence_table[self._action][outcome]) + ")")
+                  ", valence: " + str(self.valence_table[self._action][outcome]) + ")"))
 
         """ Computing the next action to enact """
 
-
+        self.compteur_lignes = self.compteur_lignes + 1
 
         #TODO: Implement the agent's decision mechanism
-        if self._action == 0 :
+        if self._action == 0:
             self.prediction0 = outcome
         else:
             self.prediction1 = outcome
 
 
+        valence0 = self.valence_table[0][self.prediction0]
+        valence1 = self.valence_table[1][self.prediction1]
 
-        if self._action == 0:
+        print(self.prediction0, self.prediction1)
+
+        if valence0 > valence1:
             self._action = 1
+            self.anticipated_outcome = self.prediction1
         else:
             self._action = 0
+            self.anticipated_outcome = self.prediction0
         #TODO: Implement the agent's anticipation mechanism
 
         if self._action == 0:
@@ -50,6 +57,11 @@ class Agent3:
 
         else:
             self.anticipated_outcome = self.prediction1
+
+
+
+
+
 
 
         return self._action
