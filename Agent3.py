@@ -29,38 +29,31 @@ class Agent3:
                   ", valence: " + str(self.valence_table[self._action][outcome]) + ")"))
 
         """ Computing the next action to enact """
-
         self.compteur_lignes = self.compteur_lignes + 1
 
-        #TODO: Implement the agent's decision mechanism
-        if self._action == 0:
+        if self._action == 0 :
             self.prediction0 = outcome
-        else:
+        else :
             self.prediction1 = outcome
 
 
-        valence0 = self.valence_table[0][self.prediction0]
-        valence1 = self.valence_table[1][self.prediction1]
-
-        print(self.prediction0, self.prediction1)
-
-        if valence0 > valence1:
-            self._action = 1
-            self.anticipated_outcome = self.prediction1
-        else:
+        if self.compteur_lignes == 1 :
             self._action = 0
-            self.anticipated_outcome = self.prediction0
-        #TODO: Implement the agent's anticipation mechanism
 
-        if self._action == 0:
-            self.anticipated_outcome = self.prediction0
+        if self.compteur_lignes == 2 :
+            self._action = 1
 
-        else:
-            self.anticipated_outcome = self.prediction1
+        elif self.compteur_lignes == 3 :
 
+            valence0 = self.valence_table[0][self.prediction0]
+            valence1 = self.valence_table[1][self.prediction1]
 
-
-
+            if valence0 > valence1:
+                self._action = 0
+                self.anticipated_outcome = self.prediction0
+            else:
+                self._action = 1
+                self.anticipated_outcome = self.prediction1
 
 
 
