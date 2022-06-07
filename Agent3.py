@@ -12,7 +12,7 @@ class Agent3:
     def __init__(self, valence_table):
         """ Creating our agent """
         self.valence_table = valence_table
-        self._action = None
+        self._action = 2
         self.anticipated_outcome = None
         self.compteur_lignes = 0
         self.prediction0 = 0

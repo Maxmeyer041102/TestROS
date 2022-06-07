@@ -3,8 +3,8 @@
 # This code is used to teach Developmental AI.
 # from turtlesim_enacter import TurtleSimEnacter # requires ROS
 import random
-from Agent3 import Agent3
-
+#from Agent3 import Agent3
+from Agent4 import Agent4
 from turtlepy_enacter import TurtlePyEnacter
 #from Agent5 import Agent5
 from OsoyooCarEnacter import OsoyooCarEnacter
@@ -97,10 +97,10 @@ class Environment4 :
 
         return _outcome
 # TODO Define the hedonist valance of interactions (action, outcome)
-valences = [[-1, 1], [-1, 1]]
+valences = [[-1, 1], [-1, 1],[1, 0]]
 # TODO Choose an agent
 #a = Agent (hedonist_table)
-a = Agent3(valences)
+a = Agent4(valences)
 # a = Agent5(hedonist_table)
 
 # TODO Define the valance of interactions (action, outcome)
@@ -112,18 +112,18 @@ a = Agent3(valences)
 
 # TODO Choose an environment
 #e = Environment1()
-e = Environment2()
+#e = Environment2()
 #e = Environment3()
-# e = Environment4()
-# e = TurtleSimEnacter()
-# e = TurtlePyEnacter()
-# e = OsoyooCarEnacter(ROBOT_IP)
+#e = Environment4()
+#e = TurtleSimEnacter()
+e = TurtlePyEnacter()
+#e = OsoyooCarEnacter('10.40.20.250')
 
 if __name__ == '__main__':
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
 
-    for i in range(10):
+    for i in range(100):
 
         action = a.action(outcome)
         outcome = e.outcome(action)

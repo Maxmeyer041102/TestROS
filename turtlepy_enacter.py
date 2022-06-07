@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import turtle
 
+
+
 # Olivier Georgeon, 2021.
 # This code is used to teach Developmental AI.
 #
@@ -34,7 +36,7 @@ class TurtlePyEnacter:
         pen.end_fill()
 
         self.turtle = turtle.Turtle("turtle")
-        self.turtle.color("green")
+        self.turtle.color("blue")
         self.turtle.speed(1)
 
     def outcome(self, action):
@@ -43,18 +45,18 @@ class TurtlePyEnacter:
             _outcome = 0
             if action == 0:
                 # move forward
-                self.turtle.speed(1)
-                self.turtle.forward(5)
+                self.turtle.speed(5)
+                self.turtle.forward(1)
             elif action == 1:
                 # rotate left
-                self.turtle.speed(10)
-                self.turtle.left(4)
-                self.turtle.forward(2)
+                self.turtle.speed(50)
+                self.turtle.left(3)
+                self.turtle.forward(1)
             elif action == 2:
                 # rotate right
-                self.turtle.speed(10)
-                self.turtle.right(4)
-                self.turtle.forward(2)
+                self.turtle.speed(50)
+                self.turtle.right(3)
+                self.turtle.forward(1)
 
             # Bump on screen edge and return outcome 1
             (screen_x, screen_y) = self.screen.screensize()
@@ -72,9 +74,9 @@ class TurtlePyEnacter:
                 _outcome = 1
 
             if _outcome == 0:
-                self.turtle.color("green")
+                self.turtle.color("blue")
             else:
-                self.turtle.color("red")
+                self.turtle.color("yellow")
 
         return _outcome
 

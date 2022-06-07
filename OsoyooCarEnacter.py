@@ -39,7 +39,7 @@ class OsoyooCarEnacter:
 
 # Testing the Osoyoo Car Enacter but controlling the robot from the console
 if __name__ == "__main__":
-    ip = "192.168.4.1"
+    ip = "10.40.20.250"
     if len(sys.argv) > 1:
         ip = sys.argv[1]
     else:
